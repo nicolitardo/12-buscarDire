@@ -1,0 +1,81 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+    <div class="container">
+        <h1 class="display-4">BuscaDireApp</h1>
+        <p class="lead">Busca tu direccion...</p>
+    </div>
+
+</div>
+
+<!-- <form class="form-inline right my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Buscar Direccion" aria-label="Search" (keyup.enter)="irAMapa(textoABuscar.value)" #textoABuscar>
+    <button class="btn btn-outline-secondary" type="button" (click)="irAMapa(textoABuscar.value)">Buscar</button>
+</form> -->
+
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Pais</label>
+        <div class="col">
+
+            <input class="form-control" type="text" placeholder="Pais" formControlName="pais" disabled>
+        </div>
+    </div>
+
+    <!-- <div class="form-group row">
+        <label class="col-2 col-form-label">Provincia</label>
+        <div class="col">
+
+            <input class="form-control" type="text" placeholder="Provincia" formControlName="provincia" [class.is-invalid]="provinciaNoValido">
+            <small *ngIf="provinciaNoValido" class="text-danger">Ingrese la provincia</small>
+        </div>
+    </div> -->
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Provincia</label>
+        <div class="col">
+            <select class="form-control" type="text" formControlName="provincia" [class.is-invalid]="provinciaNoValido">
+                <option *ngFor="let provincia of provincias" [value]="provincia.id" >{{ provincia.nombre }}</option>
+            </select>
+            <small *ngIf="provinciaNoValido" class="text-danger">Ingrese la provincia</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Ciudad</label>
+        <div class="col">
+            <!-- <input class="form-control" type="text" placeholder="Ciudad" formControlName="ciudad" [class.is-invalid]="ciudadNoValido"> -->
+            <select class="form-control" type="text" formControlName="ciudad" [class.is-invalid]="ciudadNoValido">
+                <option *ngFor="let ciudad of ciudades" [value]="ciudad.id" >{{ ciudad.nombre }}</option>
+            </select>
+            <small *ngIf="ciudadNoValido" class="text-danger">Ingrese la ciudad</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Calle</label>
+        <div class="col">
+
+            <input class="form-control" type="text" placeholder="Calle" formControlName="calle" [class.is-invalid]="calleNoValido">
+            <small *ngIf="calleNoValido" class="text-danger">Ingrese la calle o avenida</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Altura</label>
+        <div class="col">
+
+            <input class="form-control" type="number" placeholder="Altura" formControlName="altura" [class.is-invalid]="alturaNoValido">
+            <small *ngIf="alturaNoValido" class="text-danger">Ingrese la altura</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">&nbsp;</label>
+        <div class="input-group col">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+                Buscar
+            </button>
+        </div>
+    </div>
+</form>
